@@ -20,7 +20,8 @@ function menu(){
             {
                 type: 'choices',
                 name: 'teamRole',
-                message: ""
+                message: "Which type of member would you like to generate a profile for?",
+                choices: ["Manager", "Engineer", "Intern"]
             }
         ])
     }
