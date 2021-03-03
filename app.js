@@ -18,7 +18,9 @@ function menu(){
     function chooseRole() {
         inquirer.prompt([
             {
-                type: 'choices'
+                type: 'choices',
+                name: 'teamRole',
+                message: ""
             }
         ])
     }
