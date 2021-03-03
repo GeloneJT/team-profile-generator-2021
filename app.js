@@ -13,167 +13,179 @@ const render = require("./lib/htmlRenderer");
 const members = [];
 const idArray = [];
 
-function menu(){
-
-    function chooseRole() {
-        inquirer.prompt([
-            {
-                type: 'choices',
-                name: 'teamRole',
-                message: "Which type of member would you like to generate a profile for?",
-                choices: ["Manager", "Engineer", "Intern"]
+function menu() {
+  // function chooseRole() {
+  //     inquirer.prompt([
+  //         {
+  //             type: 'choices',
+  //             name: 'teamRole',
+  //             message: "Which type of member would you like to generate a profile for?",
+  //             choices: ["Manager", "Engineer", "Intern"]
+  //         }
+  //     ])
+  // }
+  function createManager() {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "managerName",
+          message: "What is the managers name?",
+          validate: (answer) => {
+            if (answer !== "") {
+              return true;
             }
-        ])
-    }
-
-
-    function createManager() {
-        inquirer.prompt([
-            {
-                type: 'input',
-                name: 'managerName',
-                message: 'What is the managers name?',
-                validate: answer => {
-                    if (answer !== "") {
-                        return true;
-                    }
-                    return "Please enter at least one character."
-                }
-            },
-            {
-                type: 'input',
-                name: 'managerId',
-                message: 'What is the managers Id?',
-                validate: answer => {
-                    if (answer !== "") {
-                        return true;
-                    }
-                    return "Please enter a valid id."
-                }
-            },
-            {
-                type: 'input',
-                name: 'managerEmail',
-                message: 'What is the managers email?',
-                validate: answer => {
-                    if (answer !== "") {
-                        return true;
-                    }
-                    return "Please enter a valid email address."
-                }
-            },
-            {
-                type: 'input',
-                name: 'managerPhone',
-                message: 'What is the managers phone number?',
-                validate: answer => {
-                    if (answer !== "") {
-                        return true;
-                    }
-                    return "Please enter a valid phone number."
-                }
+            return "Please enter at least one character.";
+          },
+        },
+        {
+          type: "input",
+          name: "managerId",
+          message: "What is the managers Id?",
+          validate: (answer) => {
+            if (answer !== "") {
+              return true;
             }
-        ])
-    }
-    function createEngineer() {
-        inquirer.prompt([
-            {
-                type: 'input',
-                name: 'engineerName',
-                message: 'What is the engineers name?',
-                validate: answer => {
-                    if (answer !== "") {
-                        return true;
-                    }
-                    return "Please enter at least one character."
-                }
-            },
-            {
-                type: 'input',
-                name: 'engineerId',
-                message: 'What is the engineers Id?',
-                validate: answer => {
-                    if (answer !== "") {
-                        return true;
-                    }
-                    return "Please enter a valid id."
-                }
-            },
-            {
-                type: 'input',
-                name: 'engineerEmail',
-                message: 'What is the engineers email?',
-                validate: answer => {
-                    if (answer !== "") {
-                        return true;
-                    }
-                    return "Please enter a valid email address."
-                }
-            },
-            {
-                type: 'input',
-                name: 'engineerGithub',
-                message: 'What is the engineers GitHub information?',
-                validate: answer => {
-                    if (answer !== "") {
-                        return true;
-                    }
-                    return "Please enter a valid Github account."
-                }
+            return "Please enter a valid id.";
+          },
+        },
+        {
+          type: "input",
+          name: "managerEmail",
+          message: "What is the managers email?",
+          validate: (answer) => {
+            if (answer !== "") {
+              return true;
             }
-        ])
-    }
-    function createIntern() {
-        inquirer.prompt([
-            {
-                type: 'input',
-                name: 'internName',
-                message: 'What is the interns name?',
-                validate: answer => {
-                    if (answer !== "") {
-                        return true;
-                    }
-                    return "Please enter at least one character."
-                }
-            },
-            {
-                type: 'input',
-                name: 'internId',
-                message: 'What is the interns Id?',
-                validate: answer => {
-                    if (answer !== "") {
-                        return true;
-                    }
-                    return "Please enter a valid id."
-                }
-            },
-            {
-                type: 'input',
-                name: 'internsEmail',
-                message: 'What is the interns email?',
-                validate: answer => {
-                    if (answer !== "") {
-                        return true;
-                    }
-                    return "Please enter a valid email address."
-                }
-            },
-            {
-                type: 'input',
-                name: 'internSchool',
-                message: 'Where did the intern attend school?',
-                validate: answer => {
-                    if (answer !== "") {
-                        return true;
-                    }
-                    return "Please enter a valid school."
-                }
+            return "Please enter a valid email address.";
+          },
+        },
+        {
+          type: "input",
+          name: "officeNumber",
+          message: "What is the managers phone number?",
+          validate: (answer) => {
+            if (answer !== "") {
+              return true;
             }
-        ])
-    }
+            return "Please enter a valid phone number.";
+          },
+        },
+      ])
+      .then((response) => {
+        const manager = new Manager(
+          response.managerName,
+          response.managerId,
+          response.managerEmail,
+          response.officeNumber
+        );
+        members.push(manager);
+      });
+  }
+  function createEngineer() {
+    inquirer.prompt([
+      {
+        type: "input",
+        name: "engineerName",
+        message: "What is the engineers name?",
+        validate: (answer) => {
+          if (answer !== "") {
+            return true;
+          }
+          return "Please enter at least one character.";
+        },
+      },
+      {
+        type: "input",
+        name: "engineerId",
+        message: "What is the engineers Id?",
+        validate: (answer) => {
+          if (answer !== "") {
+            return true;
+          }
+          return "Please enter a valid id.";
+        },
+      },
+      {
+        type: "input",
+        name: "engineerEmail",
+        message: "What is the engineers email?",
+        validate: (answer) => {
+          if (answer !== "") {
+            return true;
+          }
+          return "Please enter a valid email address.";
+        },
+      },
+      {
+        type: "input",
+        name: "engineerGithub",
+        message: "What is the engineers GitHub information?",
+        validate: (answer) => {
+          if (answer !== "") {
+            return true;
+          }
+          return "Please enter a valid Github account.";
+        },
+      },
+    ]).then(response => {
+        const engineer = new Engineer(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
+        members.push(engineer);
+    });
+  }
+  function createIntern() {
+    inquirer.prompt([
+      {
+        type: "input",
+        name: "internName",
+        message: "What is the interns name?",
+        validate: (answer) => {
+          if (answer !== "") {
+            return true;
+          }
+          return "Please enter at least one character.";
+        },
+      },
+      {
+        type: "input",
+        name: "internId",
+        message: "What is the interns Id?",
+        validate: (answer) => {
+          if (answer !== "") {
+            return true;
+          }
+          return "Please enter a valid id.";
+        },
+      },
+      {
+        type: "input",
+        name: "internsEmail",
+        message: "What is the interns email?",
+        validate: (answer) => {
+          if (answer !== "") {
+            return true;
+          }
+          return "Please enter a valid email address.";
+        },
+      },
+      {
+        type: "input",
+        name: "internSchool",
+        message: "Where did the intern attend school?",
+        validate: (answer) => {
+          if (answer !== "") {
+            return true;
+          }
+          return "Please enter a valid school.";
+        },
+      },
+    ]).then(response => {
+        const intern = new Intern(response.internName, response.internId, response.internEmail, response.internSchool);
+        members.push(intern);
+    });
+  }
 }
-
-
+menu();
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
