@@ -11,19 +11,9 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
 const members = [];
-const idArray = [];
+// const idArray = [];
 
 function menu() {
-  // function chooseRole() {
-  //     inquirer.prompt([
-  //         {
-  //             type: 'choices',
-  //             name: 'teamRole',
-  //             message: "Which type of member would you like to generate a profile for?",
-  //             choices: ["Manager", "Engineer", "Intern"]
-  //         }
-  //     ])
-  // }
   function createManager() {
     inquirer
       .prompt([
@@ -80,113 +70,151 @@ function menu() {
           response.officeNumber
         );
         members.push(manager);
+        teamBuilder();
       });
   }
   function createEngineer() {
-    inquirer.prompt([
-      {
-        type: "input",
-        name: "engineerName",
-        message: "What is the engineers name?",
-        validate: (answer) => {
-          if (answer !== "") {
-            return true;
-          }
-          return "Please enter at least one character.";
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "engineerName",
+          message: "What is the engineers name?",
+          validate: (answer) => {
+            if (answer !== "") {
+              return true;
+            }
+            return "Please enter at least one character.";
+          },
         },
-      },
-      {
-        type: "input",
-        name: "engineerId",
-        message: "What is the engineers Id?",
-        validate: (answer) => {
-          if (answer !== "") {
-            return true;
-          }
-          return "Please enter a valid id.";
+        {
+          type: "input",
+          name: "engineerId",
+          message: "What is the engineers Id?",
+          validate: (answer) => {
+            if (answer !== "") {
+              return true;
+            }
+            return "Please enter a valid id.";
+          },
         },
-      },
-      {
-        type: "input",
-        name: "engineerEmail",
-        message: "What is the engineers email?",
-        validate: (answer) => {
-          if (answer !== "") {
-            return true;
-          }
-          return "Please enter a valid email address.";
+        {
+          type: "input",
+          name: "engineerEmail",
+          message: "What is the engineers email?",
+          validate: (answer) => {
+            if (answer !== "") {
+              return true;
+            }
+            return "Please enter a valid email address.";
+          },
         },
-      },
-      {
-        type: "input",
-        name: "engineerGithub",
-        message: "What is the engineers GitHub information?",
-        validate: (answer) => {
-          if (answer !== "") {
-            return true;
-          }
-          return "Please enter a valid Github account.";
+        {
+          type: "input",
+          name: "engineerGithub",
+          message: "What is the engineers GitHub information?",
+          validate: (answer) => {
+            if (answer !== "") {
+              return true;
+            }
+            return "Please enter a valid Github account.";
+          },
         },
-      },
-    ]).then(response => {
-        const engineer = new Engineer(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
+      ])
+      .then((response) => {
+        const engineer = new Engineer(
+          response.engineerName,
+          response.engineerId,
+          response.engineerEmail,
+          response.engineerGithub
+        );
         members.push(engineer);
-    });
+        teamBuilder();
+      });
   }
   function createIntern() {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "internName",
+          message: "What is the interns name?",
+          validate: (answer) => {
+            if (answer !== "") {
+              return true;
+            }
+            return "Please enter at least one character.";
+          },
+        },
+        {
+          type: "input",
+          name: "internId",
+          message: "What is the interns Id?",
+          validate: (answer) => {
+            if (answer !== "") {
+              return true;
+            }
+            return "Please enter a valid id.";
+          },
+        },
+        {
+          type: "input",
+          name: "internsEmail",
+          message: "What is the interns email?",
+          validate: (answer) => {
+            if (answer !== "") {
+              return true;
+            }
+            return "Please enter a valid email address.";
+          },
+        },
+        {
+          type: "input",
+          name: "internSchool",
+          message: "Where did the intern attend school?",
+          validate: (answer) => {
+            if (answer !== "") {
+              return true;
+            }
+            return "Please enter a valid school.";
+          },
+        },
+      ])
+      .then((response) => {
+        const intern = new Intern(
+          response.internName,
+          response.internId,
+          response.internEmail,
+          response.internSchool
+        );
+        members.push(intern);
+        teamBuilder();
+      });
+  }
+  function teamBuilder() {
     inquirer.prompt([
       {
-        type: "input",
-        name: "internName",
-        message: "What is the interns name?",
-        validate: (answer) => {
-          if (answer !== "") {
-            return true;
-          }
-          return "Please enter at least one character.";
-        },
-      },
-      {
-        type: "input",
-        name: "internId",
-        message: "What is the interns Id?",
-        validate: (answer) => {
-          if (answer !== "") {
-            return true;
-          }
-          return "Please enter a valid id.";
-        },
-      },
-      {
-        type: "input",
-        name: "internsEmail",
-        message: "What is the interns email?",
-        validate: (answer) => {
-          if (answer !== "") {
-            return true;
-          }
-          return "Please enter a valid email address.";
-        },
-      },
-      {
-        type: "input",
-        name: "internSchool",
-        message: "Where did the intern attend school?",
-        validate: (answer) => {
-          if (answer !== "") {
-            return true;
-          }
-          return "Please enter a valid school.";
-        },
-      },
+        type: "checkbox",
+        name: "teamMembers",
+        choices: ["Manager", "Engineer", "Intern", "Finish"]
+      }
     ]).then(response => {
-        const intern = new Intern(response.internName, response.internId, response.internEmail, response.internSchool);
-        members.push(intern);
+        const role = response.teamMembers;
+        if  (role == "Manager"){
+            createManager();
+        }else if (role == "Engineer") {
+            createEngineer();
+        }else if (role == "Intern") {
+            createIntern();
+        }else if (role == "Finish") {
+            stackTeam();
+        }
     });
   }
+  teamBuilder();
 }
-function ___ () {
-    fs.writeFileSync(outputPath, render(members), "utf-8");
+function stackTeam() {
+  fs.writeFileSync(outputPath, render(members), "utf-8");
 }
 menu();
 

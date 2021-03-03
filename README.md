@@ -42,6 +42,10 @@
   npm run test
   ```
 
+  ![TestsDemo](images\TestedPassed.gif)
+
+  <hr>
+
   ## GitHub
   GeloneJT
 
