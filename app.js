@@ -185,6 +185,9 @@ function menu() {
     });
   }
 }
+function ___ () {
+    fs.writeFileSync(outputPath, render(members), "utf-8");
+}
 menu();
 
 // Write code to use inquirer to gather information about the development team members,
