@@ -27,17 +27,25 @@
 <hr>
 
   ## Usage
-  In your terminal use this code to start the CLI
+  In your terminal run this code to start the CLI
   ```
   node app.js
   ```
+
+  > Below demonstrates what the CLI looks like during the entry process
+
+  ![CLIDemo](images\CLIDemo.gif)
   <hr>
+
+  > Once the prompts are complete the generated HTML will look like below
+  
+  ![ReultsImage](images\TeamHTML.png)
 
   ## Credit
   Jelani Thomas
 
   ## Tests
-  To test the code for any errors this in the command line. Make sure the dependcies are downloaded which should have been done in the installation step. 
+  To test the code for any errors run this in the command line. Make sure the dependcies are downloaded which should have been done in the installation step. 
   ```
   npm run test
   ```
