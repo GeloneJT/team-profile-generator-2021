@@ -194,7 +194,7 @@ function menu() {
   function teamBuilder() {
     inquirer.prompt([
       {
-        type: "checkbox",
+        type: "list",
         name: "teamMembers",
         choices: ["Manager", "Engineer", "Intern", "Finish"]
       }
