@@ -184,7 +184,7 @@ function menu() {
         const intern = new Intern(
           response.internName,
           response.internId,
-          response.internEmail,
+          response.internsEmail,
           response.internSchool
         );
         members.push(intern);

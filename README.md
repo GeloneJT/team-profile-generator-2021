@@ -16,7 +16,7 @@
 
   ## Installation
 
-  To start using this code follow these instructions
+  To start this code follow these instructions:
   ```
   - npm i
   ```
@@ -27,7 +27,7 @@
 <hr>
 
   ## Usage
-  In your terminal run this code to start the CLI
+  In your terminal run this code to start the CLI:
   ```
   node app.js
   ```
@@ -39,13 +39,15 @@
 
   > Once the prompts are complete the generated HTML will look like below
   
-  ![ReultsImage](images\TeamHTML.png)
+  ![ResultsImage](images\TeamHTML.png)
+
+  <hr>
 
   ## Credit
   Jelani Thomas
 
   ## Tests
-  To test the code for any errors run this in the command line. Make sure the dependcies are downloaded which should have been done in the installation step. 
+  To test the code for any errors run this in the command line. Make sure the dependcies are downloaded, which should have been done in the installation step. 
   ```
   npm run test
   ```
@@ -55,14 +57,18 @@
   <hr>
 
   ## GitHub
-  GeloneJT
+  [GeloneJT](https://github.com/GeloneJT)
 
   ## Email
-  jelani13@icloud,com
+  jelani13@icloud.com
 
   ## Questions
-  Any further questions needed in reagrds to this application or any other repo feel free to contact me via my email or GitHub given above 
+
+  The link [here](https://youtu.be/SZXD6Y_Am1o) shows the full demo from test run, CLI  inputs, to what the HTML will look like after render.
+  Any further questions needed in regards to this application or any other repo feel free to contact me via my email or GitHub given above 
 
   ## License
-  No License applied
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
   <hr>
