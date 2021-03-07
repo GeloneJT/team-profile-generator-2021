@@ -34,12 +34,13 @@
 
   > Below demonstrates what the CLI looks like during the entry process
 
-  ![CLIDemo](images\CLIDemo.gif)
+  ![CLIDemo](images/CLIDemo.gif)
+  
   <hr>
 
   > Once the prompts are complete the generated HTML will look like below
   
-  ![ResultsImage](images\TeamHTML.png)
+  ![ResultsImage](images/TeamHTML.png)
 
   <hr>
 
@@ -52,7 +53,7 @@
   npm run test
   ```
 
-  ![TestsDemo](images\TestedPassed.gif)
+  ![TestsDemo](images/TestedPassed.gif)
 
   <hr>
 
